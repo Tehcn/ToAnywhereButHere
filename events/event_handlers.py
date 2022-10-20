@@ -1,8 +1,18 @@
 import pygame
+from pygame.locals import KEYDOWN, QUIT
 from typing import Callable
 from events.event_handler import EventHandler
 
 
-class KeyDownHandler(EventHandler):
-    def __init__(self, event: pygame.event.Event, handler: Callable[[pygame.event.Event], None]) -> None:
-        super().__init__(event, handler)
+def register_handlers():
+    # def keydown_handler_func(event: pygame.event.Event) -> None:
+    #     print(f"key pressed: {event.unicode}")
+
+    # EventHandler(KEYDOWN, keydown_handler_func)
+
+    def quit_handler(event: pygame.event.Event) -> None:
+        import sys
+        pygame.quit()
+        sys.exit()
+
+    EventHandler(QUIT, quit_handler)
